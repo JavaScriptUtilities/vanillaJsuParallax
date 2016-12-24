@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+body {
+    padding: 200px 0;
+}
+
+div {
+    padding: 200px;
+    text-align: center;
+}
+
+div + div {
+    border-top: 1px solid #ccc;
+}
+
+.circle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: top;
+    background-color: rebeccapurple;
+}
