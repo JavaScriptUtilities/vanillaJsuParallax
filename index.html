@@ -8,27 +8,33 @@
 </head>
 <body>
 <div>
-    <span class="circle"></span>
+    <span class="circle circle1"><span></span></span>
 </div>
 <div>
-    <span class="circle"></span>
+    <span class="circle circle1"><span></span></span>
+    <span class="circle circle2" data-jsuplxdir="bottom"><span></span></span>
 </div>
 <div>
-    <span class="circle"></span>
+    <span class="circle circle1" data-jsuplxperspective="100"><span></span></span>
+    <span class="circle circle1" data-jsuplxperspective="200"><span></span></span>
+    <span class="circle circle1" data-jsuplxperspective="300"><span></span></span>
 </div>
 <div>
-    <span class="circle"></span>
+    <span class="circle circle1"><span></span></span>
+    <span class="circle circle2" data-jsuplxdir="bottom"><span></span></span>
+</div>
+<div>
+    <span class="circle circle1"><span></span></span>
+</div>
+<div>
+    <span class="circle circle1"><span></span></span>
+    <span class="circle circle2" data-jsuplxdir="bottom"><span></span></span>
 </div>
 
 <script>
-    new vanillaJsuParallax({
-        items: document.querySelectorAll('.circle'),
-        itemCallback: function(item, distMiddle) {
-            item.style.webkitTransform = 'translateY(' + distMiddle * 200 + 'px)';
-            item.style.mozTransform = 'translateY(' + distMiddle * 200 + 'px)';
-            item.style.transform = 'translateY(' + distMiddle * 200 + 'px)';
-        }
-    });
+new vanillaJsuParallax({
+    items: document.querySelectorAll('.circle1, .circle2')
+});
 </script>
 </body>
 </html>

@@ -10,11 +10,16 @@ Then, when DOM is ready, start the plugin :
 
 ```js
 new vanillaJsuParallax({
-    items: document.querySelectorAll('.circle'),
-    itemCallback: function(item, distMiddle) {
-        item.style.webkitTransform = 'translateY(' + distMiddle * 200 + 'px)';
-        item.style.mozTransform = 'translateY(' + distMiddle * 200 + 'px)';
-        item.style.transform = 'translateY(' + distMiddle * 200 + 'px)';
-    }
+    items: document.querySelectorAll('.item')
 });
+```
+
+You can also custom the move behavior
+
+```html
+<div class="item"><div class="child-to-move"></div></div>
+<!-- Movement to bottom -->
+<div class="item" data-jsuplxdir="bottom"><div class="child-to-move"></div></div>
+<!-- Change perspective (default: 200) -->
+<div class="item" data-jsuplxperspective="300"><div class="child-to-move"></div></div>
 ```
