@@ -1,6 +1,6 @@
 /*
  * Plugin Name: Vanilla-JSU Parallax
- * Version: 0.2.0
+ * Version: 0.2.1
  * Plugin URL: https://github.com/JavaScriptUtilities/vanillaJsuParallax
  * JavaScriptUtilities Vanilla-JS may be freely distributed under the MIT license.
  */
@@ -59,7 +59,7 @@ var vanillaJsuParallax = function(settings) {
         /* Save options */
         item.jsuParallaxOpts = opt;
         /* Initial style */
-        item.firstChild.style.willChange = 'transform';
+        item.firstElementChild.style.willChange = 'transform';
         return item;
     };
 
@@ -68,7 +68,7 @@ var vanillaJsuParallax = function(settings) {
         if (item.jsuParallaxOpts.dir == 'bottom') {
             dist = 0 - dist;
         }
-        self.setTransform(item.firstChild, 0, dist, 0);
+        self.setTransform(item.firstElementChild, 0, dist, 0);
     };
 
     /* Helper */
