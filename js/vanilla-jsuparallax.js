@@ -1,6 +1,6 @@
 /*
  * Plugin Name: Vanilla-JSU Parallax
- * Version: 0.3.0
+ * Version: 0.4.0
  * Plugin URL: https://github.com/JavaScriptUtilities/vanillaJsuParallax
  * JavaScriptUtilities Vanilla-JS may be freely distributed under the MIT license.
  */
@@ -12,7 +12,11 @@ var vanillaJsuParallax = function(settings) {
         itemCallback,
         itemPrepare,
         itemPerspective = 0,
+        minViewportHeight = 0,
+        minViewportWidth = 0,
+        activeParallax = 0,
         winHeight = 0,
+        winWidth = 0,
         items = [],
         itemsOpts = [],
         itemsLen = 0;
@@ -24,6 +28,8 @@ var vanillaJsuParallax = function(settings) {
         itemCallback = settings.itemCallback || itemCallbackDefault;
         itemPrepare = settings.itemPrepare || itemPrepareDefault;
         itemPerspective = settings.perspective || 200;
+        minViewportHeight = settings.minViewportHeight || minViewportHeight;
+        minViewportWidth = settings.minViewportWidth || minViewportWidth;
 
         /* Prepare items */
         for (var i = 0; i < itemsLen; i++) {
@@ -38,9 +44,21 @@ var vanillaJsuParallax = function(settings) {
 
     /* Scroll Event */
     var scrollEvent = function() {
+        var i;
         winHeight = parseInt(window.innerHeight, 10);
-        for (var i = 0; i < itemsLen; i++) {
-            setScrollItem(i, items[i]);
+        winWidth = parseInt(window.innerWidth, 10);
+        if (winWidth >= minViewportWidth && winHeight >= minViewportHeight) {
+            for (i = 0; i < itemsLen; i++) {
+                setScrollItem(i, items[i]);
+            }
+        }
+        else {
+            if (activeParallax) {
+                activeParallax = 0;
+                for (i = 0; i < itemsLen; i++) {
+                    setTransformTranslate3d(items[i].firstElementChild, 0, 0, 0);
+                }
+            }
         }
     };
 
@@ -79,6 +97,9 @@ var vanillaJsuParallax = function(settings) {
     /* Helper */
     var setTransformTranslate3d = function(item, x, y, z) {
         itemStyleSetTransform(item, 'translate3d(' + x + 'px,' + y + 'px,' + z + 'px)');
+        if (x != 0 || y != 0 || z != 0) {
+            activeParallax = 1;
+        }
     };
 
     var itemStyleSetTransform = function(item, transformString) {
