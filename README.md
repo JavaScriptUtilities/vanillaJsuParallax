@@ -1,4 +1,4 @@
-# vanillaInfiniteScroll
+# Vanilla JSU Parallax
 
 Parallax on elements
 

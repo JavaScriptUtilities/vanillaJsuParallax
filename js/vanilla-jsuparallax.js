@@ -1,6 +1,6 @@
 /*
  * Plugin Name: Vanilla-JSU Parallax
- * Version: 0.4.0
+ * Version: 0.4.1
  * Plugin URL: https://github.com/JavaScriptUtilities/vanillaJsuParallax
  * JavaScriptUtilities Vanilla-JS may be freely distributed under the MIT license.
  */
@@ -96,6 +96,9 @@ var vanillaJsuParallax = function(settings) {
 
     /* Helper */
     var setTransformTranslate3d = function(item, x, y, z) {
+        if (!item) {
+            return;
+        }
         itemStyleSetTransform(item, 'translate3d(' + x + 'px,' + y + 'px,' + z + 'px)');
         if (x != 0 || y != 0 || z != 0) {
             activeParallax = 1;
