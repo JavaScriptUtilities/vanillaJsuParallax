@@ -1,6 +1,6 @@
 /*
  * Plugin Name: Vanilla-JSU Parallax
- * Version: 0.4.1
+ * Version: 0.4.2
  * Plugin URL: https://github.com/JavaScriptUtilities/vanillaJsuParallax
  * JavaScriptUtilities Vanilla-JS may be freely distributed under the MIT license.
  */
@@ -11,7 +11,8 @@ var vanillaJsuParallax = function(settings) {
     var self = this,
         itemCallback,
         itemPrepare,
-        itemPerspective = 0,
+        itemPerspective = 200,
+        distMiddleAdjust = 2,
         minViewportHeight = 0,
         minViewportWidth = 0,
         activeParallax = 0,
@@ -25,9 +26,10 @@ var vanillaJsuParallax = function(settings) {
         /* Opts */
         items = settings.items || [];
         itemsLen = items.length;
+        distMiddleAdjust = settings.distMiddleAdjust || distMiddleAdjust;
         itemCallback = settings.itemCallback || itemCallbackDefault;
         itemPrepare = settings.itemPrepare || itemPrepareDefault;
-        itemPerspective = settings.perspective || 200;
+        itemPerspective = settings.perspective || itemPerspective;
         minViewportHeight = settings.minViewportHeight || minViewportHeight;
         minViewportWidth = settings.minViewportWidth || minViewportWidth;
 
@@ -65,7 +67,7 @@ var vanillaJsuParallax = function(settings) {
     var setScrollItem = function(i, item) {
         var rect = item.getBoundingClientRect(),
             elCenter = (rect.top + rect.bottom) / 2,
-            distMiddle = elCenter / winHeight - 1 / 2;
+            distMiddle = elCenter / winHeight - 1 / distMiddleAdjust;
         itemCallback(i, item, distMiddle);
     };
 
