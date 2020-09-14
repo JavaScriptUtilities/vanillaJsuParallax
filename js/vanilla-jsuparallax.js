@@ -1,6 +1,6 @@
 /*
  * Plugin Name: Vanilla-JSU Parallax
- * Version: 0.4.2
+ * Version: 0.4.3
  * Plugin URL: https://github.com/JavaScriptUtilities/vanillaJsuParallax
  * JavaScriptUtilities Vanilla-JS may be freely distributed under the MIT license.
  */
@@ -25,6 +25,10 @@ var vanillaJsuParallax = function(settings) {
     var initFun = function(settings) {
         /* Opts */
         items = settings.items || [];
+        /* Fix if only one item is loaded */
+        if (typeof items[0] == 'undefined' && typeof items.tagName == 'string') {
+            items = [items];
+        }
         itemsLen = items.length;
         distMiddleAdjust = settings.distMiddleAdjust || distMiddleAdjust;
         itemCallback = settings.itemCallback || itemCallbackDefault;
