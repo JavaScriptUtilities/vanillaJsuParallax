@@ -1,6 +1,6 @@
 /*
  * Plugin Name: Vanilla-JSU Parallax
- * Version: 0.4.3
+ * Version: 0.4.4
  * Plugin URL: https://github.com/JavaScriptUtilities/vanillaJsuParallax
  * JavaScriptUtilities Vanilla-JS may be freely distributed under the MIT license.
  */
@@ -46,6 +46,11 @@ var vanillaJsuParallax = function(settings) {
         window.addEventListener('resize', scrollEvent, 1);
         document.addEventListener('scroll', scrollEvent, 1);
         scrollEvent();
+    };
+
+    this.deleteEvents = function(){
+        window.removeEventListener('resize', scrollEvent, 1);
+        document.removeEventListener('scroll', scrollEvent, 1);
     };
 
     /* Scroll Event */
