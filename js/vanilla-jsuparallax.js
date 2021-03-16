@@ -1,6 +1,6 @@
 /*
  * Plugin Name: Vanilla-JSU Parallax
- * Version: 0.4.4
+ * Version: 0.5.0
  * Plugin URL: https://github.com/JavaScriptUtilities/vanillaJsuParallax
  * JavaScriptUtilities Vanilla-JS may be freely distributed under the MIT license.
  */
@@ -85,6 +85,8 @@ var vanillaJsuParallax = function(settings) {
         var opt = {};
         /* Movement direction */
         opt.dir = item.getAttribute('data-jsuplxdir') == 'bottom' ? 'bottom' : 'top';
+        /* Movement mode */
+        opt.mode = item.getAttribute('data-jsuplxmode') == 'horizontal' ? 'horizontal' : 'vertical';
         /* Movement perspective */
         var elPerspective = parseInt(item.getAttribute('data-jsuplxperspective'), 10);
         opt.perspective = elPerspective ? elPerspective : itemPerspective;
@@ -102,13 +104,18 @@ var vanillaJsuParallax = function(settings) {
         if (itemsOpts[i].dir == 'bottom') {
             dist = 0 - dist;
         }
-        setTransformTranslate3d(item.firstElementChild, 0, dist, 0);
+        setTransformTranslate3d(item.firstElementChild, 0, dist, 0, itemsOpts[i].mode);
     };
 
     /* Helper */
-    var setTransformTranslate3d = function(item, x, y, z) {
+    var setTransformTranslate3d = function(item, x, y, z, mode) {
         if (!item) {
             return;
+        }
+        if(mode == 'horizontal'){
+            var tmpX = x;
+            x = y;
+            y = tmpX;
         }
         itemStyleSetTransform(item, 'translate3d(' + x + 'px,' + y + 'px,' + z + 'px)');
         if (x != 0 || y != 0 || z != 0) {
